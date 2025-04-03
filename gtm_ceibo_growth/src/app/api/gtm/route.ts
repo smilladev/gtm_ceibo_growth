@@ -1,4 +1,5 @@
 // app/api/gtm/route.ts
+import Error from 'next/error';
 import { connectDB } from '../../lib/mongoose';
 import Data from '../../models/data';
 
@@ -19,7 +20,8 @@ export async function POST(request: Request) {
     console.log('Datos recibidos:', body);
 
     const nuevoDato = new Data(body);
-    await nuevoDato.save();
+    await nuevoDato.save().then((doc:any) => console.log('Documento guardado:', doc)).catch((err:Error) => console.error('Error al guardar:', err));;
+
 
     // Aquí podrías añadir lógica, como guardar los datos en una base de datos
     const respuesta = { mensaje: 'Datos procesados exitosamente', datos: body };
