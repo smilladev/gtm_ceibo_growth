@@ -2,7 +2,6 @@ import { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true, // Ayuda a identificar problemas en desarrollo
-  swcMinify: true, // Optimiza el rendimiento en producción
   async redirects() {
     return [
       {
