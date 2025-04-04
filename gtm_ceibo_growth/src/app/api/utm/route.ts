@@ -41,6 +41,7 @@ export async function GET(request: Request) {
 
     return NextResponse.redirect(urlRedirect);
 
+    
     //return NextResponse.json(params, { status: 200 });
 
   } catch (error) {
