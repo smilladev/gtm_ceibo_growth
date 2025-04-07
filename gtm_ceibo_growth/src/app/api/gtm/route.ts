@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     await connectDB();
 
     const headers = new Headers();
-    headers.set('Access-Control-Allow-Origin', 'https://www.crediagil.com.py');
+    headers.set('Access-Control-Allow-Origin', '*');
     headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
     headers.set('Access-Control-Allow-Headers', 'Content-Type');
 
