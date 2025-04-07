@@ -16,6 +16,17 @@ export async function POST(request: Request) {
 
     await connectDB();
 
+    const headers = new Headers();
+    headers.set('Access-Control-Allow-Origin', 'https://www.crediagil.com.py');
+    headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    headers.set('Access-Control-Allow-Headers', 'Content-Type');
+
+    // Manejar solicitudes OPTIONS (preflight)
+    if (request.method === 'OPTIONS') {
+      return new Response(null, { status: 200, headers });
+    }
+
+
     const body = await request.json(); // Parseamos el cuerpo de la solicitud
     console.log('Datos recibidos:', body);
 
