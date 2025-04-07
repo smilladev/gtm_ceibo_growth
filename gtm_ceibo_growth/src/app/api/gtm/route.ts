@@ -9,8 +9,6 @@ export async function GET() {
   return NextResponse.json({ mensaje: 'Endpoint funcionando correctamente' });
 }
 
-
-
 export async function POST(request: Request) {
   try {
 
