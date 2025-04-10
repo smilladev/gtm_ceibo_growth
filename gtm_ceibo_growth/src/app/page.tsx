@@ -10,7 +10,7 @@ export default function Home() {
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a
             className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-            href="/descargas"
+            href="/api/gtm"
             target="_blank"
             rel="noopener noreferrer"
           >
