@@ -2,10 +2,53 @@
 import Error from 'next/error';
 import { connectDB } from '../../lib/mongoose';
 import Data from '../../models/data';
+import { Parser } from '@json2csv/plainjs';
 
 import { NextResponse } from 'next/server';
 
 export async function GET() {
+
+
+  const collectionName = 'Data'; // Reemplaza con el nombre de tu colección
+  const camposAExportar = ['email', 'cedula', 'fglid', 'gclid', 'pagina_de_entrada', 'UTM_Source', 'UTM_Medium', 'UTM_Campaign', 'Pagina_de_salida', 'Codigo_de_retorno']; // Define tus campos
+
+
+  try {
+    
+    await connectDB();
+
+    const documentos = await Data.find({}, '-_id').lean().exec();
+
+    if (!documentos || documentos.length === 0) {
+      return NextResponse.json(
+        { mensaje: 'No se encontraron datos para exportar.' },
+        { status: 200 }
+      );
+    }
+
+    const json2csvParser = new Parser({ fields: camposAExportar });
+    const csvData = json2csvParser.parse(documentos);
+
+    return new NextResponse(csvData, {
+      status: 200,
+      headers: {
+        'Content-Type': 'text/csv',
+        'Content-Disposition': 'attachment; filename="exportacion.csv"',
+      },
+    });
+
+
+  } catch (error) {
+    console.error('Error al exportar a CSV:', error);
+    return NextResponse.json(
+      { error: 'Error al obtener o procesar los datos para la exportación.' },
+      { status: 500 }
+    );
+  } finally {
+    // No desconectes Mongoose aquí si lo estás reutilizando en otras partes de tu aplicación
+    // mongoose.disconnect();
+  }
+
   return NextResponse.json({ mensaje: 'Endpoint funcionando correctamente' });
 }
 
