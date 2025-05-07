@@ -37,8 +37,8 @@ export async function GET(request: Request) {
     const urlRedirect =
       'https://api.whatsapp.com/send/?phone=595974565858&text=Hola, vi tu anuncio en Google y tengo una consulta..&type=phone_number&app_absent=0'
 
-    //return NextResponse.redirect(urlRedirect);
-    return NextResponse.json({ mensaje: urlRedirect }, { status: 200 })
+    return NextResponse.redirect(urlRedirect);
+    //return NextResponse.json({ mensaje: urlRedirect }, { status: 200 })
 
     //return NextResponse.json(params, { status: 200 });
   } catch (error) {
