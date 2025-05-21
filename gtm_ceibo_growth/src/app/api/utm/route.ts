@@ -35,8 +35,8 @@ export async function GET(request: Request) {
       .catch((err: Error) => console.error('Error al guardar:', err))
 
     const urlRedirect =
-      'https://api.whatsapp.com/send/?phone=595974565858&text=Hola, vi tu anuncio en Google y tengo una consulta..&type=phone_number&app_absent=0'
-
+      'https://api.whatsapp.com/send/?phone=595974565858&text=Hola, vi tu anuncio en Google y tengo una consulta..'
+      //&type=phone_number&app_absent=0
     //return NextResponse.redirect(urlRedirect);
     return NextResponse.json({ urlRedirect: urlRedirect }, { status: 200 })
 
